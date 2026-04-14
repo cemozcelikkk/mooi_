@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooii | Premium Dessert Boutique</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFFDF8',
+                        vanilla: '#FDF5E6',
+                        caramel: '#D28B45',
+                        chocolate: '#4A2E1B',
+                        pistachio: '#C3D3A8',
+                        pink: '#F6DCDC',
+                        gold: '#C59A4E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 8s ease-in-out infinite 2s',
+                        'spin-slow': 'spin 15s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Utilities */
+        body { background-color: theme('colors.cream'); color: theme('colors.chocolate'); }
+        
+        .glass {
+            background: rgba(255, 253, 248, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-dark {
+            background: rgba(74, 46, 27, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hide scrollbar for horizontal lists but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Menu transitions */
+        #menu-overlay {
+            clip-path: circle(0% at top right);
+            transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #menu-overlay.menu-open {
+            clip-path: circle(150% at top right);
+        }
+
+        /* Image hover zooms */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 0.7s ease; }
+        .img-zoom-container:hover img { transform: scale(1.05); }
+
+        /* Mobile responsiveness fixes */
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img { max-width: 100%; display: block; }
+
+        @media (max-width: 768px) {
+            #navbar { padding: 1rem; }
+            #navbar a { font-size: 1.75rem; }
+            #menu-toggle { padding: 0.65rem; }
+
+            #menu-overlay {
+                padding-top: 5.5rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            #menu-overlay > div {
+                height: auto;
+                gap: 2rem;
+            }
+            #menu-overlay .text-4xl { font-size: clamp(2rem, 10vw, 3rem) !important; }
+            #menu-overlay .rounded-\[40px\] {
+                border-radius: 1.5rem !important;
+                padding: 1.5rem !important;
+            }
+            .mood-btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 1rem !important;
+            }
+
+            #ana-sayfa {
+                min-height: 100svh;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            #ana-sayfa h1 { font-size: clamp(4rem, 22vw, 6rem) !important; }
+            #ana-sayfa p {
+                font-size: 1.05rem !important;
+                line-height: 1.65;
+            }
+            #ana-sayfa .mt-12.flex {
+                width: 100%;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            #ana-sayfa .mt-12.flex > * {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                padding-bottom: 5rem !important;
+            }
+            .category-section {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            h2 {
+                font-size: clamp(2.5rem, 12vw, 3.75rem) !important;
+                line-height: 1.08 !important;
+            }
+            h3 { overflow-wrap: anywhere; }
+            p { overflow-wrap: anywhere; }
+
+            .rounded-\[40px\], .rounded-\[32px\], .rounded-\[30px\] { border-radius: 1.5rem !important; }
+            .p-12 { padding: 1.5rem !important; }
+            .p-8 { padding: 1.25rem !important; }
+
+            .h-\[600px\], .h-\[500px\] { height: 360px !important; }
+            .h-\[400px\] { height: 320px !important; }
+            .h-\[250px\] { height: 220px !important; }
+
+            #waffle .absolute.bottom-0.w-full.glass {
+                padding: 1rem !important;
+                transform: none !important;
+            }
+            #waffle .absolute.bottom-0.w-full.glass .flex {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            #kruvasanlar .shrink-0 { width: min(78vw, 280px) !important; }
+            #kruvasanlar [style*="100vw"] {
+                margin-left: -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            .bg-chocolate.w-\[100vw\], div.w-\[100vw\] {
+                margin-left: -1rem !important;
+                width: calc(100% + 2rem) !important;
+            }
+            #san-sebastian .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            #san-sebastian .-mt-12 { margin-top: 0 !important; }
+            #san-sebastian .flex.gap-4 { flex-wrap: wrap; }
+
+            #cup-tatlilar .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            #cup-tatlilar .col-span-1,
+            #cup-tatlilar .col-span-2 {
+                grid-column: span 1 / span 1 !important;
+            }
+            #cup-tatlilar .h-\[400px\] { height: 340px !important; }
+            #cup-tatlilar .h-\[190px\] { height: 220px !important; }
+            #cup-tatlilar .absolute.bottom-0.left-0.p-8 { padding: 1.25rem !important; }
+            #cup-tatlilar .flex.justify-between { align-items: flex-start; flex-direction: column; gap: 0.5rem; }
+        }
+
+        @media (max-width: 420px) {
+            #menu-overlay .flex-wrap { gap: 0.6rem; }
+            .glass.rounded-2xl.p-6 .flex.gap-4 {
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            .glass.rounded-2xl.p-6 .w-24 {
+                width: 5rem;
+                height: 5rem;
+            }
+            footer { padding-left: 1rem !important; padding-right: 1rem !important; }
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Background Blobs -->
+    <div class="blob w-96 h-96 bg-pink/40 top-0 left-0 animate-float rounded-full"></div>
+    <div class="blob w-[30rem] h-[30rem] bg-vanilla right-0 top-1/4 animate-float-delayed rounded-full"></div>
+    <div class="blob w-80 h-80 bg-pistachio/30 left-10 top-1/2 animate-float rounded-full"></div>
+    <div class="blob w-96 h-96 bg-caramel/20 right-20 bottom-0 animate-float-delayed rounded-full"></div>
+
+    <!-- Header / Navbar Minimal -->
+    <header class="fixed w-full top-0 left-0 z-40 p-6 flex justify-between items-center mix-blend-difference text-cream transition-all duration-300" id="navbar">
+        <a href="#ana-sayfa" class="font-serif text-3xl italic font-bold tracking-wider">Mooii.</a>
+        <button id="menu-toggle" class="p-3 bg-cream/10 rounded-full hover:bg-cream/20 transition-colors backdrop-blur-sm relative z-50">
+            <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+        </button>
+    </header>
+
+    <!-- Fullscreen Menu -->
+    <nav id="menu-overlay" class="fixed inset-0 bg-cream z-40 flex flex-col pt-24 px-6 md:px-16 overflow-y-auto pb-10 pointer-events-none">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 h-full">
+            
+            <!-- Left: Navigation Links -->
+            <div class="flex flex-col justify-center space-y-6">
+                <p class="text-sm uppercase tracking-[0.2em] text-caramel font-semibold mb-4">Hızlı Erişim</p>
+                <div class="flex flex-col space-y-4 font-serif text-4xl md:text-6xl text-chocolate">
+                    <a href="#mega-box" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">Mega Box</a>
+                    <a href="#waffle" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">Waffle</a>
+                    <a href="#kruvasanlar" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">Kruvasanlar</a>
+                    <a href="#brownie" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">Brownie</a>
+                    <a href="#san-sebastian" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">San Sebastian</a>
+                    <a href="#cup-tatlilar" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4">Cup Tatlılar</a>
+                    <a href="#ekstralar" class="menu-link hover:italic hover:text-caramel transition-all origin-left hover:translate-x-4 mt-8 text-2xl !md:text-3xl">Ekstralar</a>
+                </div>
+            </div>
+
+            <!-- Right: Mood Selector -->
+            <div class="flex flex-col justify-center bg-vanilla/50 rounded-[40px] p-8 md:p-12 border border-white/40 shadow-xl">
+                <h3 class="font-serif text-3xl text-chocolate mb-8 italic">Bugün ne yemek istiyorsun?</h3>
+                <div class="flex flex-wrap gap-4">
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 hover:bg-chocolate hover:text-cream transition-colors text-lg" data-mood="çikolata">Çikolatalı</button>
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 hover:bg-pink hover:border-pink hover:text-chocolate transition-colors text-lg" data-mood="meyveli">Meyveli</button>
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 hover:bg-vanilla hover:border-vanilla transition-colors text-lg" data-mood="hafif">Hafif & Serin</button>
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 bg-gold text-cream hover:bg-chocolate transition-colors text-lg shadow-lg" data-mood="premium">Premium</button>
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 hover:bg-pistachio transition-colors text-lg" data-mood="kalabalik">Kalabalık Paylaşım</button>
+                    <button class="mood-btn px-6 py-3 rounded-full border border-chocolate/20 hover:bg-caramel transition-colors text-lg" data-mood="tek">Tek Kişilik Kaçamak</button>
+                </div>
+                <div class="mt-12">
+                    <p class="text-sm font-medium text-chocolate/60">Seçimini yap, senin için en uygun lezzetlere götürelim. ✨</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="ana-sayfa" class="w-full min-h-screen flex flex-col justify-center items-center relative px-6 text-center pt-20">
+        <span class="text-caramel uppercase tracking-[0.3em] text-sm font-semibold mb-6 reveal">Dessert Boutique</span>
+        <h1 class="font-serif text-7xl md:text-9xl text-chocolate leading-tight reveal">Mooii<span class="italic text-caramel">.</span></h1>
+        <p class="mt-6 text-xl md:text-2xl font-light text-chocolate/80 max-w-2xl reveal">Her lokmada mutluluk. Günün stresini unutturacak, damak tadınızı şımartacak el yapımı sanat eserleri.</p>
+        
+        <div class="mt-12 flex gap-6 reveal">
+            <a href="#mega-box" class="px-8 py-4 bg-chocolate text-cream rounded-full font-medium hover:bg-caramel transition-colors shadow-xl hover:shadow-caramel/20 flex items-center gap-2">
+                Menüyü Keşfet <i data-lucide="arrow-right"></i>
+            </a>
+            <button onclick="document.getElementById('menu-toggle').click();" class="px-8 py-4 bg-glass text-chocolate rounded-full font-medium hover:bg-white/80 transition-colors shadow-lg glass border border-white">
+                Tatlı Türü Seç
+            </button>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-chocolate"></i>
+        </div>
+    </section>
+
+    <main class="w-full relative z-10 px-4 md:px-12 pb-32">
+        
+        <!-- MEGA BOX (Hero Product) -->
+        <section id="mega-box" class="py-24 reveal category-section" data-tags="premium kalabalik çikolata">
+            <div class="max-w-7xl mx-auto">
+                <div class="relative rounded-[40px] overflow-hidden bg-vanilla flex flex-col md:flex-row items-center border border-white/50 shadow-2xl group">
+                    <div class="w-full md:w-1/2 p-12 md:p-20 z-10">
+                        <span class="inline-block px-4 py-1 bg-gold text-white rounded-full text-xs font-bold tracking-widest uppercase mb-6 shadow-lg shadow-gold/30">İmza Ürün</span>
+                        <h2 class="font-serif text-5xl md:text-6xl text-chocolate mb-6 group-hover:italic transition-all">Mooii Mega Box</h2>
+                        <p class="text-lg text-chocolate/80 leading-relaxed mb-8">
+                            Tüm lezzetlerin bir arada olduğu muhteşem koleksiyon. Waffle, Pancake, Brownie, taze muz, çilek ve bol çeşit erimiş çikolata ile dolu dev lezzet kutusu.
+                        </p>
+                        <div class="flex items-end gap-2">
+                            <span class="text-4xl font-serif text-caramel font-bold border-b-2 border-caramel/30 pb-1">700 ₺</span>
+                            <span class="text-sm flex items-center gap-1 text-chocolate/60 mb-2 ml-4"><i data-lucide="users" class="w-4 h-4"></i> 2-3 Kişilik</span>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 h-[400px] md:h-[600px] relative img-zoom-container">
+                        <img src="https://i.imgur.com/SmIRrfA.jpeg" alt="Mooii Mega Box" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-vanilla to-transparent md:block hidden"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-vanilla to-transparent md:hidden block"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WAFFLE (Asymmetric Grid) -->
+        <section id="waffle" class="py-24 max-w-7xl mx-auto category-section" data-tags="çikolata kalabalik meyveli premium">
+            <div class="mb-16 md:flex justify-between items-end reveal">
+                <div>
+                    <span class="text-caramel uppercase tracking-widest text-sm font-semibold">Çıtır & Yumuşak</span>
+                    <h2 class="font-serif text-6xl text-chocolate mt-2">Waffle</h2>
+                </div>
+                <p class="max-w-sm text-chocolate/70 font-medium md:text-right mt-6 md:mt-0">Eşsiz soslar, taze meyveler ve artisan hamurumuzun mükemmel buluşması.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Large Item -->
+                <div class="md:col-span-8 group reveal product-card bg-white rounded-[30px] overflow-hidden shadow-xl" data-tags="çikolata premium">
+                    <div class="relative h-[500px] img-zoom-container">
+                        <img src="https://i.imgur.com/8yBSeWf.jpeg" alt="Double Waffle" class="w-full h-full object-cover">
+                        <div class="absolute top-6 left-6"><span class="bg-chocolate text-cream px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-bold">Favori</span></div>
+                    </div>
+                    <div class="bg-cream p-8 border-t border-caramel/10">
+                        <div class="flex justify-between items-end gap-6">
+                            <div>
+                                <h3 class="font-serif text-3xl text-chocolate mb-2">Double Waffle</h3>
+                                <p class="text-chocolate/80 text-sm max-w-md">İki waffle arasına bol çikolata, muz, çilek ve antep fıstığı parçacıkları.</p>
+                            </div>
+                            <span class="font-serif text-2xl font-bold text-caramel shrink-0">460 ₺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regular Item -->
+                <div class="md:col-span-4 group reveal product-card" data-tags="premium">
+                    <div class="bg-white rounded-[30px] overflow-hidden shadow-lg border border-cream h-full flex flex-col hover:-translate-y-2 transition-transform">
+                        <div class="h-[250px] relative img-zoom-container">
+                            <img src="https://i.imgur.com/ERsZc2L.jpeg" alt="Mooii Special Waffle" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-serif text-xl text-chocolate mb-2">Mooii Special Waffle</h3>
+                            <p class="text-chocolate/60 text-sm mb-4 flex-grow">Fındık kreması, antep fıstığı sosu, beyaz çikolata ve fıstık parçacıkları.</p>
+                            <span class="font-serif text-xl font-bold text-caramel">350 ₺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List Items Details Grid -->
+                <div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 reveal">
+                    <!-- Item -->
+                    <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="meyveli">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/Xkrs9f2.jpeg" alt="Klasik Waffle" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Klasik Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Sütlü ve beyaz çikolata, muz, çilek, fıstık</p>
+                                <span class="block mt-2 font-bold text-caramel">230 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="çikolata">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/PPS7Fjr.jpeg" alt="Lotus" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Lotus Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Lotus kırıntıları, muz ve lotus sosu</p>
+                                <span class="block mt-2 font-bold text-caramel">340 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="çikolata">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/y3dtwaO.jpeg" alt="Gofrik" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Gofrik Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Gofrik parçacıkları ile sütlü/beyaz çikolata</p>
+                                <span class="block mt-2 font-bold text-caramel">300 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="çikolata">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/h1sPxcO.jpeg" alt="Belçika" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Belçika Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Bitter/Sütlü/Beyaz kombo, taze meyveler</p>
+                                <span class="block mt-2 font-bold text-caramel">250 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Item -->
+                     <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="çikolata premium">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/cXOxjlR.jpeg" alt="Antep" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Antep Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Antep fıstığı sosu, dondurma ve parçacıklar</p>
+                                <span class="block mt-2 font-bold text-caramel">340 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Item -->
+                     <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors" data-tags="tek hafif">
+                        <div class="flex gap-4">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                                <img src="https://i.imgur.com/L399ubC.jpeg" alt="Bowl" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Waffle Bowl</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Mini parçacıklar, meyve ile bardak sunumu</p>
+                                <span class="block mt-2 font-bold text-caramel">250 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KRUVASANLAR (Horizontal Scroll) -->
+        <section id="kruvasanlar" class="py-24 w-full category-section" data-tags="premium meyveli çikolata tek">
+            <div class="max-w-7xl mx-auto px-4 md:px-0 mb-12 reveal">
+                <div class="flex items-center gap-6">
+                    <h2 class="font-serif text-5xl md:text-6xl text-chocolate">Kruvasanlar</h2>
+                    <div class="h-px bg-caramel/30 flex-grow"></div>
+                    <span class="text-sm font-medium text-chocolate/60 hidden md:block">Kaydır <i data-lucide="arrow-right" class="w-4 h-4 inline"></i></span>
+                </div>
+            </div>
+
+            <div class="flex overflow-x-auto gap-8 hide-scrollbar snap-x snap-mandatory pb-12 px-4 md:px-12 reveal" style="margin-left: calc(-50vw + 50%); width: 100vw; padding-left: max(1rem, calc((100vw - 80rem) / 2));">
+                
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="meyveli">
+                    <div class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="https://i.imgur.com/fPXJkdn.jpeg" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Meyveli Kruvasan</h3>
+                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">Taze çilek, muz ve artisan kruvasan.</p>
+                    <span class="font-bold text-caramel text-xl">300 ₺</span>
+                </div>
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="hafif premium">
+                    <div class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="https://i.imgur.com/HqYNroT.jpeg" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4"><span class="bg-pink text-chocolate px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow-md">Ferah</span></div>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Dondurmalı</h3>
+                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">İki dilim dondurma, çilek ve fıstık parçacıkları.</p>
+                    <span class="font-bold text-caramel text-xl">340 ₺</span>
+                </div>
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="premium meyveli">
+                    <div class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="https://i.imgur.com/La0Nsnb.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Lotus Meyveli</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Beyaz çikolata, meyveler, ve enfes lotus sosu.</p>
+                    <span class="font-bold text-caramel text-xl">340 ₺</span>
+                </div>
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="premium">
+                    <div class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="https://i.imgur.com/mjEfnqG.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Antep Dolgulu</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Roll, Küp veya Kalp seçenekleri ile artisan antep dolgu.</p>
+                    <span class="font-bold text-caramel text-xl">360 - 400 ₺</span>
+                </div>
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="çikolata">
+                    <div class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="https://i.imgur.com/CgkGwTd.jpeg" class="w-full h-full object-cover object-bottom">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Sütlü Çikolata Dolgulu</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Roll, Küp veya Kalp seçenekleri.</p>
+                    <span class="font-bold text-caramel text-xl">270 - 300 ₺</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DARK MODE SECTION (Brownie & San Sebastian) -->
+        <div class="relative py-24 my-24 w-[100vw] ml-[calc(-50vw+50%)] bg-chocolate text-cream overflow-hidden">
+            <!-- Decorative Dark blobs -->
+            <div class="absolute w-[40rem] h-[40rem] bg-caramel/20 blur-[100px] rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute w-[30rem] h-[30rem] bg-[#3A1E0B] blur-[80px] rounded-full bottom-0 right-0 translate-x-1/4"></div>
+
+            <div class="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
+                
+                <!-- Brownie -->
+                <section id="brownie" class="mb-32 category-section" data-tags="çikolata tek premium">
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="font-serif text-6xl text-vanilla mb-4">Brownie Sanatı</h2>
+                        <p class="text-cream/70 max-w-lg mx-auto">Sıcacık servis edilen, dışı çıtır, içi akışkan çikolata mucizesi.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-[#3A1E0B] rounded-3xl p-4 reveal group product-card" data-tags="premium çikolata">
+                            <div class="h-64 rounded-2xl overflow-hidden mb-6 relative img-zoom-container">
+                                <img src="https://i.imgur.com/bCbP2ol.jpeg" class="w-full h-full object-cover">
+                                <div class="absolute top-3 right-3"><span class="bg-gold text-white text-xs font-bold px-2 py-1 rounded">ÖZEL</span></div>
+                            </div>
+                            <h3 class="font-serif text-2xl mb-2 text-white group-hover:text-gold transition-colors">Dubai Karışımlı</h3>
+                            <p class="text-cream/60 text-sm mb-4">Dubai çikolatası eklentisiyle daha zengin bir doku.</p>
+                            <span class="font-serif text-xl text-gold">280 ₺</span>
+                        </div>
+                        
+                        <div class="bg-[#3A1E0B] rounded-3xl p-4 reveal group product-card" style="transition-delay: 100ms" data-tags="hafif tek">
+                            <div class="h-64 rounded-2xl overflow-hidden mb-6 img-zoom-container">
+                                <img src="https://i.imgur.com/VwLLTLo.jpeg" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="font-serif text-2xl mb-2 text-white group-hover:text-gold transition-colors">Dondurmalı</h3>
+                            <p class="text-cream/60 text-sm mb-4">Sıcak ve soğuğun kusursuz uyumu.</p>
+                            <span class="font-serif text-xl text-gold">250 ₺</span>
+                        </div>
+
+                         <div class="bg-[#3A1E0B] rounded-3xl p-4 reveal group product-card" style="transition-delay: 200ms" data-tags="meyveli">
+                            <div class="h-64 rounded-2xl overflow-hidden mb-6 bg-[url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center">
+                                <!-- placeholder using rich dark tones -->
+                            </div>
+                            <h3 class="font-serif text-2xl mb-2 text-white group-hover:text-gold transition-colors">Meyveli Brownie</h3>
+                            <p class="text-cream/60 text-sm mb-4">Taze orman meyveleri aroması.</p>
+                            <span class="font-serif text-xl text-gold">250 ₺</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- San Sebastian -->
+                <section id="san-sebastian" class="category-section" data-tags="çikolata premium hafif tek">
+                    <div class="md:flex items-center gap-16 reveal">
+                        <div class="md:w-5/12 mb-10 md:mb-0">
+                            <h2 class="font-serif text-6xl text-vanilla mb-6 leading-tight">San <br>Sebastian</h2>
+                            <p class="text-cream/70 text-lg mb-8 leading-relaxed">
+                                Dünyanın en ünlü cheesecake'i. İçi akışkan, üzeri mükemmel derecede yanık fırınlanmış bu efsanevi lezzeti özel soslarımızla bambaşka bir boyuta taşıyoruz.
+                            </p>
+                            <div class="flex gap-4">
+                                <span class="px-4 py-2 bg-cream/10 rounded-full text-sm border border-cream/20 font-medium">Çikolata</span>
+                                <span class="px-4 py-2 bg-cream/10 rounded-full text-sm border border-cream/20 font-medium">Dubai</span>
+                                <span class="px-4 py-2 bg-cream/10 rounded-full text-sm border border-cream/20 font-medium">Lotus</span>
+                            </div>
+                        </div>
+
+                        <div class="md:w-7/12 grid grid-cols-2 gap-6">
+                            <div class="flex flex-col gap-6 -mt-12">
+                                <div class="glass-dark rounded-3xl p-5 product-card" data-tags="premium">
+                                    <div class="aspect-[4/5] rounded-2xl overflow-hidden mb-4 img-zoom-container"><img src="https://i.imgur.com/IIkz1tj.jpeg" class="w-full h-full object-cover"></div>
+                                    <h4 class="font-bold text-lg mb-1">Dubai San Sebastian</h4>
+                                    <p class="text-gold font-serif">290 ₺</p>
+                                </div>
+                                <div class="glass-dark rounded-3xl p-5 product-card" data-tags="premium">
+                                    <div class="aspect-square rounded-2xl overflow-hidden mb-4 img-zoom-container"><img src="https://i.imgur.com/1ciC8XS.jpeg" class="w-full h-full object-cover"></div>
+                                    <h4 class="font-bold text-lg mb-1">Lotus Soslu</h4>
+                                    <p class="text-gold font-serif">290 ₺</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-6">
+                                <div class="glass-dark rounded-3xl p-5 product-card" data-tags="çikolata">
+                                    <div class="aspect-square rounded-2xl overflow-hidden mb-4 img-zoom-container"><img src="https://i.imgur.com/hxXA0re.png" class="w-full h-full object-cover bg-white"></div>
+                                    <h4 class="font-bold text-lg mb-1">Çikolatalı</h4>
+                                    <p class="text-gold font-serif">250 ₺</p>
+                                </div>
+                                 <div class="glass-dark rounded-3xl p-5 h-full flex flex-col justify-center border-dashed border-2 border-cream/20 hover:bg-cream/5 transition-colors product-card" data-tags="meyveli hafif">
+                                    <h4 class="font-bold text-lg mb-1">Çilek Soslu</h4>
+                                    <p class="text-cream/60 text-sm mb-4">Taze ferahlık</p>
+                                    <p class="text-gold font-serif text-xl">220 ₺</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- CUP TATLILAR (Masonry / Soft Playful Layout) -->
+        <section id="cup-tatlilar" class="py-24 max-w-7xl mx-auto category-section" data-tags="hafif meyveli tek premium">
+            <div class="text-center mb-16 reveal flex flex-col items-center">
+                <div class="bg-pink/20 p-4 rounded-full mb-6">
+                    <i data-lucide="cup-soda" class="w-8 h-8 text-pink"></i>
+                </div>
+                <h2 class="font-serif text-5xl text-chocolate mb-4">Cup & Kaşık Tatlıları</h2>
+                <p class="text-chocolate/70">Bardak içinde katman katman şölen.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                
+                <div class="col-span-2 md:col-span-2 row-span-2 group relative rounded-[32px] overflow-hidden shadow-lg h-[400px] product-card" data-tags="premium">
+                    <img src="https://i.imgur.com/lSIixr6.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-medium mb-3 inline-block">Öne Çıkan</span>
+                        <h3 class="font-serif text-3xl text-white mb-1">Dubai Cup</h3>
+                        <div class="flex justify-between items-center w-full">
+                            <p class="text-white/80 text-sm">Premium kadayıf ve fıstık</p>
+                            <span class="text-gold font-bold text-xl font-serif">290 ₺</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-1 group relative rounded-[24px] overflow-hidden shadow h-[190px] product-card" data-tags="hafif">
+                    <img src="https://i.imgur.com/oxcOygg.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                        <h3 class="font-bold">Magnolia</h3>
+                        <span class="text-gold text-sm font-bold">150 ₺</span>
+                    </div>
+                </div>
+
+                <div class="col-span-1 group relative rounded-[24px] overflow-hidden shadow h-[190px] product-card" data-tags="hafif meyveli">
+                    <img src="https://i.imgur.com/1zkEgl4.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 object-top">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                        <h3 class="font-bold">Yaz Gülü</h3>
+                        <span class="text-gold text-sm font-bold">250 ₺</span>
+                    </div>
+                </div>
+
+                <div class="col-span-1 group relative rounded-[24px] overflow-hidden shadow h-[190px] product-card" data-tags="hafif premium">
+                    <img src="https://i.imgur.com/hTyNh0d.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                        <h3 class="font-bold leading-tight">Spoonfull</h3>
+                        <span class="text-gold text-sm font-bold">170 ₺</span>
+                    </div>
+                </div>
+
+                <div class="col-span-1 group relative rounded-[24px] overflow-hidden shadow h-[190px] product-card" data-tags="premium">
+                    <img src="https://i.imgur.com/pFPBV9P.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
+                        <h3 class="font-bold leading-tight">Fıstık Rüyası</h3>
+                        <span class="text-gold text-sm font-bold">250 ₺</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Minimal -->
+    <footer id="ekstralar" class="w-full bg-vanilla py-16 px-6 text-center border-t border-caramel/10 relative z-10">
+        <h2 class="font-serif text-3xl text-chocolate mb-6 italic">Ekstralar</h2>
+        <div class="flex flex-wrap justify-center gap-4 text-chocolate/70 font-medium max-w-2xl mx-auto mb-10">
+            <span class="px-4 py-2 border border-chocolate/20 rounded-full">Sütlü Çikolata</span>
+            <span class="px-4 py-2 border border-chocolate/20 rounded-full">Bitter</span>
+            <span class="px-4 py-2 border border-chocolate/20 rounded-full">Beyaz Çikolata</span>
+            <span class="px-4 py-2 border border-chocolate/20 rounded-full bg-caramel/10">Lotus Sos</span>
+            <span class="px-4 py-2 border border-chocolate/20 rounded-full bg-gold/10">Dondurma Topu</span>
+        </div>
+        <p class="text-sm text-chocolate/50 italic mb-10">Fiyatı belirtilmeyen ürünler için personelimiz memnuniyetle yardımcı olacaktır.</p>
+        
+        <div class="font-serif text-4xl text-caramel">Mooii<span class="text-chocolate">.</span></div>
+    </footer>
+
+
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // Reveal Animations on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        // Glassmorphism Navbar effect on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'shadow-sm', 'text-chocolate');
+                navbar.classList.remove('mix-blend-difference', 'text-cream');
+                document.getElementById('menu-toggle').classList.replace('bg-cream/10', 'bg-chocolate/5');
+            } else {
+                navbar.classList.remove('glass', 'shadow-sm', 'text-chocolate');
+                navbar.classList.add('mix-blend-difference', 'text-cream');
+                document.getElementById('menu-toggle').classList.replace('bg-chocolate/5', 'bg-cream/10');
+            }
+        });
+
+        // Fullscreen Menu Toggle
+        const menuBtn = document.getElementById('menu-toggle');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const body = document.body;
+        let menuOpen = false;
+
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            if(menuOpen) {
+                menuOverlay.classList.add('menu-open');
+                menuOverlay.classList.remove('pointer-events-none');
+                body.style.overflow = 'hidden';
+                document.getElementById('menu-icon').setAttribute('data-lucide', 'x');
+                // Adjust colors for light background navigation
+                navbar.classList.remove('mix-blend-difference', 'text-cream');
+                navbar.classList.add('text-chocolate');
+            } else {
+                menuOverlay.classList.remove('menu-open');
+                menuOverlay.classList.add('pointer-events-none');
+                body.style.overflow = '';
+                document.getElementById('menu-icon').setAttribute('data-lucide', 'menu');
+                
+                // Return to appropriate navbar state based on scroll
+                if (window.scrollY <= 50) {
+                    navbar.classList.add('mix-blend-difference', 'text-cream');
+                    navbar.classList.remove('text-chocolate');
+                }
+            }
+            lucide.createIcons();
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking links
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if(menuOpen) toggleMenu();
+            });
+        });
+
+        // Mood Filtering Logic ("Bugün ne yemek istiyorsun?")
+        const moodBtns = document.querySelectorAll('.mood-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        const categorySections = document.querySelectorAll('.category-section');
+
+        moodBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const selectedMood = e.target.getAttribute('data-mood');
+                
+                // Close menu first
+                toggleMenu();
+
+                // Reset all previous highlights
+                productCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = '';
+                });
+
+                // Find the first section or card that matches the mood to scroll there
+                setTimeout(() => {
+                    let firstMatch = null;
+
+                    // Let's dim non-matching products slightly and emphasize matching ones
+                    productCards.forEach(card => {
+                        const tags = card.getAttribute('data-tags') || '';
+                        if (tags.includes(selectedMood)) {
+                            if(!firstMatch) firstMatch = card.closest('section') || card;
+                            // Add a subtle highlight effect
+                            card.style.boxShadow = '0 0 0 4px rgba(210, 139, 69, 0.4)';
+                            card.style.transform = 'scale(1.02)';
+                            card.style.transition = 'all 0.5s ease';
+                        } else {
+                            // Dim others softly so the matched items POP
+                            card.style.opacity = '0.4';
+                            card.style.transition = 'opacity 0.5s ease';
+                        }
+                    });
+
+                    // Scroll to the first match
+                    if (firstMatch) {
+                        const y = firstMatch.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }
+                    
+                    // Reset styling after 5 seconds to return to normal browsing
+                    setTimeout(() => {
+                        productCards.forEach(c => {
+                            c.style.opacity = '1';
+                            c.style.transform = '';
+                            c.style.boxShadow = '';
+                        });
+                    }, 5000);
+
+                }, 400); // wait for menu animation to finish
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
