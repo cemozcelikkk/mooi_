@@ -20,6 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -354,11 +355,11 @@
 
     <!-- Header / Navbar Minimal -->
     <header
-        class="fixed w-full top-0 left-0 z-40 p-6 flex justify-between items-center mix-blend-difference text-cream transition-all duration-300"
+        class="fixed w-full top-0 left-0 z-40 p-6 flex justify-between items-center text-chocolate transition-all duration-300"
         id="navbar">
         <a href="#ana-sayfa" class="font-serif text-3xl italic font-bold tracking-wider">Mooii.</a>
         <button id="menu-toggle"
-            class="p-3 bg-cream/10 rounded-full hover:bg-cream/20 transition-colors backdrop-blur-sm relative z-50">
+            class="p-3 bg-chocolate/5 rounded-full hover:bg-chocolate/10 transition-colors backdrop-blur-sm relative z-50">
             <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
         </button>
     </header>
@@ -467,8 +468,9 @@
                             class="font-serif text-5xl md:text-6xl text-chocolate mb-6 group-hover:italic transition-all">
                             Mooii Mega Box</h2>
                         <p class="text-lg text-chocolate/80 leading-relaxed mb-8">
-                            Tüm lezzetlerin bir arada olduğu muhteşem koleksiyon. Waffle, Pancake, Brownie, taze muz,
-                            çilek ve bol çeşit erimiş çikolata ile dolu dev lezzet kutusu.
+                            Waffle, Pancake, Brownie, taze muz, çilek ve bol çeşit çikolata ile dolu dev lezzet kutusu.
+                            2-3 kişilik ideal paylaşım boyutu.
+
                         </p>
                         <div class="flex items-end gap-2">
                             <span class="text-4xl text-caramel font-bold border-b-2 border-caramel/30 pb-1">700 ₺</span>
@@ -512,7 +514,7 @@
                             <div>
                                 <h3 class="font-serif text-3xl text-chocolate mb-2">Double Waffle</h3>
                                 <p class="text-chocolate/80 text-sm max-w-md">İki waffle arasına bol çikolata, muz,
-                                    çilek ve antep fıstığı parçacıkları.</p>
+                                    çilek ve antep fıstığı parçacıkları</p>
                             </div>
                             <span class="text-2xl font-bold text-caramel shrink-0">460 ₺</span>
                         </div>
@@ -529,8 +531,8 @@
                         </div>
                         <div class="p-6">
                             <h3 class="font-serif text-xl text-chocolate mb-2">Mooii Special Waffle</h3>
-                            <p class="text-chocolate/60 text-sm mb-4">Fındık kreması, antep fıstığı sosu,
-                                beyaz çikolata ve fıstık parçacıkları.</p>
+                            <p class="text-chocolate/60 text-sm mb-4">Fındık kreması, antep fıstığı sosu, beyaz çikolata
+                                ve antep fıstığı parçacıkları ile servis edilir.</p>
                             <span class="text-xl font-bold text-caramel">350 ₺</span>
                         </div>
                     </div>
@@ -548,7 +550,8 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Klasik Waffle</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Sütlü ve beyaz çikolata, muz, çilek, fıstık
+                                <p class="text-xs text-chocolate/70 mt-1">Sütlü çikolata ve beyaz çikolata, muz, çilek
+                                    ve antep fıstığı parçacıkları ile servis edilir
                                 </p>
                                 <span class="block mt-2 font-bold text-caramel">230 ₺</span>
                             </div>
@@ -564,7 +567,8 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Lotus Waffle</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Lotus kırıntıları, muz ve lotus sosu</p>
+                                <p class="text-xs text-chocolate/70 mt-1">Waffle üzerine lotus bisküvi kırıntıları, iki
+                                    sıra muz ve lotus sosu ile servis edilir</p>
                                 <span class="block mt-2 font-bold text-caramel">340 ₺</span>
                             </div>
                         </div>
@@ -579,7 +583,8 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Gofrik Waffle</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Gofrik parçacıkları ile sütlü/beyaz çikolata
+                                <p class="text-xs text-chocolate/70 mt-1">Sütlü ve beyaz çikolata, üzerine gofrik
+                                    parçacıkları ile servis edilir
                                 </p>
                                 <span class="block mt-2 font-bold text-caramel">300 ₺</span>
                             </div>
@@ -594,7 +599,8 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Belçika Waffle</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Bitter/Sütlü/Beyaz kombo, taze meyveler</p>
+                                <p class="text-xs text-chocolate/70 mt-1">Sütlü çikolata, bitter ve beyaz çikolata, muz,
+                                    çilek ve antep fıstığı parçacıkları ile servis edilir</p>
                                 <span class="block mt-2 font-bold text-caramel">250 ₺</span>
                             </div>
                         </div>
@@ -609,7 +615,8 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Antep Waffle</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Antep fıstığı sosu, dondurma ve parçacıklar
+                                <p class="text-xs text-chocolate/70 mt-1">Antep fıstığı soslu, Antep fıstığı, iki sıra
+                                    muz, dondurma ve antep fıstığı parçacıkları ile servis edilir
                                 </p>
                                 <span class="block mt-2 font-bold text-caramel">340 ₺</span>
                             </div>
@@ -625,8 +632,24 @@
                             </div>
                             <div>
                                 <h4 class="font-serif text-lg font-bold">Waffle Bowl</h4>
-                                <p class="text-xs text-chocolate/70 mt-1">Mini parçacıklar, meyve ile bardak sunumu</p>
+                                <p class="text-xs text-chocolate/70 mt-1">Mini waffle parçacıkları, muz, çilek ile
+                                    servis edilir</p>
                                 <span class="block mt-2 font-bold text-caramel">250 ₺</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="glass rounded-2xl p-6 flex flex-col product-card hover:bg-white transition-colors"
+                        data-tags="çikolata premium">
+                        <div class="flex gap-4">
+                            <div class="w-32 h-32 rounded-xl overflow-hidden shrink-0">
+                                <img src="kindedr.jpeg" alt="Kinder" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-lg font-bold">Kinder Waffle</h4>
+                                <p class="text-xs text-chocolate/70 mt-1">Sütlü beyaz ve bitter çikolata, kinder
+                                    kırıntıları ile servis edilir</p>
+                                <span class="block mt-2 font-bold text-caramel">320 ₺</span>
                             </div>
                         </div>
                     </div>
@@ -657,7 +680,8 @@
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Meyveli Kruvasan</h3>
-                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">Taze çilek, muz ve artisan kruvasan.</p>
+                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">Kruvasan taze çilek, muz ile servis edilir
+                    </p>
                     <span class="font-bold text-caramel text-xl">300 ₺</span>
                 </div>
                 <!-- Card -->
@@ -670,8 +694,9 @@
                         </div>
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Dondurmalı</h3>
-                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">İki dilim dondurma, çilek ve fıstık
-                        parçacıkları.</p>
+                    <p class="text-chocolate/60 text-sm mb-3 line-clamp-2">Kruvasan içi iki dilim dondurma, çilek ile
+                        antep fıstığı parçacıkları ile servis edilir
+                    </p>
                     <span class="font-bold text-caramel text-xl">340 ₺</span>
                 </div>
                 <!-- Card -->
@@ -680,8 +705,9 @@
                         class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
                         <img src="https://i.imgur.com/La0Nsnb.jpeg" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Lotus Meyveli</h3>
-                    <p class="text-chocolate/60 text-sm mb-3">Beyaz çikolata, meyveler, ve enfes lotus sosu.</p>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Lotus Soslu Meyveli</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Kruvasan beyaz çikolata taze çilek, muz, lotus sosu ile
+                        servis edilir</p>
                     <span class="font-bold text-caramel text-xl">340 ₺</span>
                 </div>
                 <!-- Card -->
@@ -690,20 +716,44 @@
                         class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
                         <img src="https://i.imgur.com/mjEfnqG.jpeg" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Antep Dolgulu</h3>
-                    <p class="text-chocolate/60 text-sm mb-3">Roll, Küp veya Kalp seçenekleri ile artisan antep dolgu.
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Antep Fıstığı Dolgulu</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Roll/Küp/Kalp seçenekleri ile antep fıstığı dolgulu
+                        kruvasan
                     </p>
-                    <span class="font-bold text-caramel text-xl">360 - 400 ₺</span>
+                    <span class="font-bold text-caramel text-xl">360 - 360 - 400 ₺</span>
                 </div>
                 <!-- Card -->
+                <!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="premium">
+                    <div
+                        class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="kalp.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Kalp Kruvasan</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Kalp şeklinde özel kruvasan
+                    </p>
+                    <span class="font-bold text-caramel text-xl">300 ₺</span>
+                </div><!-- Card -->
+                <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="premium">
+                    <div
+                        class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
+                        <img src="fındık.jpeg" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Fındık Kremalı Dolgulu Kruvasan</h3>
+                    <p class="text-chocolate/60 text-sm mb-3">Roll/Küp/Kalp boy seçenekleri ile fındık kremalı dolgulu
+                        kruvasan
+                    </p>
+                    <span class="font-bold text-caramel text-xl">360 - 360 - 400 ₺</span>
+                </div>
                 <div class="shrink-0 w-[280px] md:w-[350px] snap-center group product-card" data-tags="çikolata">
                     <div
                         class="h-[400px] rounded-[30px] overflow-hidden relative mb-6 shadow-xl img-zoom-container bg-white">
                         <img src="https://i.imgur.com/CgkGwTd.jpeg" class="w-full h-full object-cover object-bottom">
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-chocolate mb-2">Sütlü Çikolata Dolgulu</h3>
-                    <p class="text-chocolate/60 text-sm mb-3">Roll, Küp veya Kalp seçenekleri.</p>
-                    <span class="font-bold text-caramel text-xl">270 - 300 ₺</span>
+                    <p class="text-chocolate/60 text-sm mb-3">Roll/Küp/Kalp seçenekleri ile sütlü çikolata dolgulu
+                        kruvasan</p>
+                    <span class="font-bold text-caramel text-xl">270 - 270 - 300 ₺</span>
                 </div>
 
             </div>
@@ -739,7 +789,7 @@
                             </div>
                             <h3 class="font-serif text-2xl mb-2 text-chocolate">Dubai Karışımlı</h3>
                             <p class="text-chocolate/60 text-sm mb-4">Dubai çikolatası eklentisiyle daha zengin bir
-                                doku.</p>
+                                brownie.</p>
                             <span class="text-xl text-caramel font-bold">280 ₺</span>
                         </div>
 
@@ -749,7 +799,7 @@
                                 <img src="https://i.imgur.com/VwLLTLo.jpeg" class="w-full h-full object-cover">
                             </div>
                             <h3 class="font-serif text-2xl mb-2 text-chocolate">Dondurmalı</h3>
-                            <p class="text-chocolate/60 text-sm mb-4">Sıcak ve soğuğun kusursuz uyumu.</p>
+                            <p class="text-chocolate/60 text-sm mb-4">Sıcak brownie üzerine soğuk vanilya dondurması</p>
                             <span class="text-xl text-caramel font-bold">250 ₺</span>
                         </div>
 
@@ -760,7 +810,7 @@
                                 <!-- placeholder using rich dark tones -->
                             </div>
                             <h3 class="font-serif text-2xl mb-2 text-chocolate">Meyveli Brownie</h3>
-                            <p class="text-chocolate/60 text-sm mb-4">Taze orman meyveleri aroması.</p>
+                            <p class="text-chocolate/60 text-sm mb-4">Taze meyveler ile renklendirilen brownie</p>
                             <span class="text-xl text-caramel font-bold">250 ₺</span>
                         </div>
                     </div>
@@ -912,88 +962,111 @@
                     <i data-lucide="coffee" class="w-8 h-8 text-caramel relative z-10"></i>
                 </div>
                 <h2 class="font-serif text-5xl md:text-6xl text-chocolate mb-4">İçecekler</h2>
-                <p class="text-chocolate/70 max-w-xl mx-auto">Tatlılarınıza eşlik edecek özenle hazırlanan sıcak ve soğuk lezzetler.</p>
+                <p class="text-chocolate/70 max-w-xl mx-auto">Tatlılarınıza eşlik edecek özenle hazırlanan sıcak ve
+                    soğuk lezzetler.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 px-4 md:px-8 reveal">
-                
+
                 <!-- Left Column -->
                 <div class="space-y-16">
-                    
+
                     <!-- Sıcak İçecekler -->
                     <div>
                         <div class="flex items-end justify-between mb-8 border-b border-chocolate/10 pb-4">
                             <h3 class="font-serif text-3xl text-chocolate">Sıcak İçecekler</h3>
-                            <span class="text-xs text-chocolate/50 font-medium tracking-widest uppercase">Küçük / Büyük</span>
+                            <span class="text-xs text-chocolate/50 font-medium tracking-widest uppercase">Küçük /
+                                Büyük</span>
                         </div>
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Espresso</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Espresso</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Double Espresso</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Double
+                                    Espresso</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">120 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Americano</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Americano</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 120 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Latte</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Latte</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Cappuccino</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Cappuccino</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 130 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Flat White</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Flat
+                                    White</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">120 / 140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Mocha</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Mocha</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">White Mocha</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">White
+                                    Mocha</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Filter Coffee</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Filter
+                                    Coffee</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 120 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Hot Chocolate</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Hot
+                                    Chocolate</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 120 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Türk Kahvesi</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Türk
+                                    Kahvesi</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">70 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Çay</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Çay</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">30 / 60 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Bitki Çayları</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Bitki
+                                    Çayları</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Salep</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Salep</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 / 120 ₺</span>
                             </li>
@@ -1008,7 +1081,9 @@
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
                                 <div class="flex flex-col">
-                                    <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Aroma Seçenekleri</span>
+                                    <span
+                                        class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Aroma
+                                        Seçenekleri</span>
                                     <span class="text-sm text-chocolate/60">Oreo, Çilek, Muz, Çikolata</span>
                                 </div>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20 mx-2"></div>
@@ -1025,7 +1100,9 @@
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
                                 <div class="flex flex-col">
-                                    <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Buzlu Klasik</span>
+                                    <span
+                                        class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Buzlu
+                                        Klasik</span>
                                     <span class="text-sm text-chocolate/60">Çikolata, Karamel, Vanilya</span>
                                 </div>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20 mx-2"></div>
@@ -1037,7 +1114,7 @@
 
                 <!-- Right Column -->
                 <div class="space-y-16">
-                    
+
                     <!-- Soğuk Kahveler -->
                     <div>
                         <div class="flex items-end justify-between mb-8 border-b border-chocolate/10 pb-4">
@@ -1045,47 +1122,65 @@
                         </div>
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Americano</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Americano</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">120 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Latte</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Latte</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">130 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Caramel Latte</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Caramel Latte</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Vanilla Latte</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Vanilla Latte</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Chai Tea Latte</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Chai Tea Latte</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Mocha</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Mocha</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice White Chocolate Mocha</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    White Chocolate Mocha</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Flat White</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Flat White</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice Caramel Macchiato</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ice
+                                    Caramel Macchiato</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
@@ -1099,22 +1194,29 @@
                         </div>
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Cool Lime</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Cool
+                                    Lime</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Berry Hibiscus</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Berry
+                                    Hibiscus</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Churchill</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Churchill</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">90 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Italian Soda</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Italian
+                                    Soda</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">120 ₺</span>
                             </li>
@@ -1128,12 +1230,15 @@
                         </div>
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Classic</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Classic</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">100 ₺</span>
                             </li>
                             <li class="flex justify-between items-baseline gap-4 group">
-                                <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Strawberry, Lemon and Mint</span>
+                                <span
+                                    class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Çilek,
+                                    Limon ve Nane</span>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20"></div>
                                 <span class="font-bold text-caramel">120 ₺</span>
                             </li>
@@ -1148,8 +1253,11 @@
                         <ul class="space-y-4">
                             <li class="flex justify-between items-baseline gap-4 group">
                                 <div class="flex flex-col">
-                                    <span class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ferah Taze</span>
-                                    <span class="text-sm text-chocolate/60">Pineapple, Strawberry, Mango, Lemon, Forest Fruity</span>
+                                    <span
+                                        class="font-medium text-chocolate text-lg group-hover:text-caramel transition-colors">Ferah
+                                        Taze</span>
+                                    <span class="text-sm text-chocolate/60">Ananas, Çilek, Mango, Limon, Orman
+                                        Meyveleri</span>
                                 </div>
                                 <div class="flex-grow border-b border-dotted border-chocolate/20 mx-2"></div>
                                 <span class="font-bold text-caramel">140 ₺</span>
@@ -1203,13 +1311,11 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('glass', 'shadow-sm', 'text-chocolate');
-                navbar.classList.remove('mix-blend-difference', 'text-cream');
-                document.getElementById('menu-toggle').classList.replace('bg-cream/10', 'bg-chocolate/5');
+                navbar.classList.add('glass', 'shadow-sm');
+                document.getElementById('menu-toggle').classList.replace('bg-chocolate/5', 'bg-chocolate/10');
             } else {
-                navbar.classList.remove('glass', 'shadow-sm', 'text-chocolate');
-                navbar.classList.add('mix-blend-difference', 'text-cream');
-                document.getElementById('menu-toggle').classList.replace('bg-chocolate/5', 'bg-cream/10');
+                navbar.classList.remove('glass', 'shadow-sm');
+                document.getElementById('menu-toggle').classList.replace('bg-chocolate/10', 'bg-chocolate/5');
             }
         });
 
@@ -1226,20 +1332,11 @@
                 menuOverlay.classList.remove('pointer-events-none');
                 body.style.overflow = 'hidden';
                 document.getElementById('menu-icon').setAttribute('data-lucide', 'x');
-                // Adjust colors for light background navigation
-                navbar.classList.remove('mix-blend-difference', 'text-cream');
-                navbar.classList.add('text-chocolate');
             } else {
                 menuOverlay.classList.remove('menu-open');
                 menuOverlay.classList.add('pointer-events-none');
                 body.style.overflow = '';
                 document.getElementById('menu-icon').setAttribute('data-lucide', 'menu');
-
-                // Return to appropriate navbar state based on scroll
-                if (window.scrollY <= 50) {
-                    navbar.classList.add('mix-blend-difference', 'text-cream');
-                    navbar.classList.remove('text-chocolate');
-                }
             }
             lucide.createIcons();
         }
